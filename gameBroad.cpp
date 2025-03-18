@@ -9,7 +9,7 @@ gameBroad::gameBroad()
 	this->computer_player;
 }
 
-const void gameBroad::update()
+void gameBroad::update() const 
 {
 	for (size_t rows = 0; rows < 3; rows++) 
 	{

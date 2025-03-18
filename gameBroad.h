@@ -15,7 +15,7 @@ class gameBroad {
 
 public:
 	gameBroad();
-	const void update();
+	void update() const ;
 	void Menu();
 	void gamePlayLoop();
 	

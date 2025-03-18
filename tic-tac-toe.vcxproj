@@ -129,7 +129,6 @@
   <ItemGroup>
     <ClCompile Include="gameBroad.cpp" />
     <ClCompile Include="gameBroad.h" />
-    <ClCompile Include="Input_output.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
