@@ -6,3 +6,7 @@ A simple game of Tic-Tac-Toe play against the computer 💻
 After your turn the computer will go next. You the player 
 will always be 'X' and the computer is 'O'. The first 
 player to reach three in row will win 🌟 
+
+### Features 📖
+
+#### How to Play ✏️
