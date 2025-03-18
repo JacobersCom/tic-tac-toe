@@ -19,7 +19,8 @@ void gameBroad::update() const
 
 			if (columns < 2)
 			{
-				std::cout << " |"; // column divider
+				std::cout << "|"; // column divider
+				
 
 			}
 
@@ -28,7 +29,7 @@ void gameBroad::update() const
 
 		if (rows < 2)
 		{
-			std::cout << "--------" << "\n"; // row divider
+			std::cout << "-------" << "\n"; // row divider
 		}
 	}
 
@@ -63,7 +64,7 @@ void gameBroad::gamePlayLoop()
 
 		update();
 		
-		if (graph[row][column] == 'X')
+		/*if (graph[row][column] == 'X')
 		{
 			system("CLS");
 			std::cout << "Jeff\n\n";
@@ -73,7 +74,7 @@ void gameBroad::gamePlayLoop()
 			std::cout << "Pick a column : ";
 			std::cin >> column;
 
-		}
+		}*/
 		
 			
 		if (graph[0][0] == 'X' && graph[0][1] == 'X' && graph[0][2] == 'X')
