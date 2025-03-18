@@ -62,6 +62,20 @@ void gameBroad::gamePlayLoop()
 
 
 		update();
+		
+		if (graph[row][column] == 'X')
+		{
+			system("CLS");
+			std::cout << "Jeff\n\n";
+			update();
+			std::cout << "\nPick a row : ";
+			std::cin >> row;
+			std::cout << "Pick a column : ";
+			std::cin >> column;
+
+		}
+		
+			
 		if (graph[0][0] == 'X' && graph[0][1] == 'X' && graph[0][2] == 'X')
 		{
 			flag = false;
@@ -104,6 +118,19 @@ void gameBroad::gamePlayLoop()
 		}
 	}
 	
+}
+
+int gameBroad::randomNumber()
+{
+	int min = 0;
+	int max = 3;
+
+	std::random_device seed; // seed for random number engine
+	std::mt19937 gen(seed()); // Mister tiwist engine
+
+	std::uniform_int_distribution<int> distr(min, max);
+
+	return distr(gen);
 }
 
 

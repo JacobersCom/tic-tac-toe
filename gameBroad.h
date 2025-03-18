@@ -1,4 +1,5 @@
 #include <iostream>
+#include <random>
 
 class gameBroad {
 
@@ -14,10 +15,13 @@ class gameBroad {
 	};
 
 public:
+	
 	gameBroad();
 	void update() const ;
 	void Menu();
 	void gamePlayLoop();
+	int randomNumber();
+
 	
 
 };
