@@ -3,6 +3,7 @@
 class gameBroad {
 
 	int row, column;
+	std::string human_player, computer_player;
 	
 	char graph[3][3] = {
 
@@ -13,7 +14,10 @@ class gameBroad {
 	};
 
 public:
-
 	gameBroad();
-	void display();
+	const void update();
+	void Menu();
+	void gamePlayLoop();
+	
+
 };
