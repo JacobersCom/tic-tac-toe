@@ -61,77 +61,96 @@ void gameBroad::gamePlayLoop()
 
 		graph[row][column] = ' X';
 
-
 		update();
-		
-		/*if (graph[row][column] == 'X')
+
+		if (graph[row][column] == 'X')
 		{
 			system("CLS");
 			std::cout << "Jeff\n\n";
 			update();
-			std::cout << "\nPick a row : ";
-			std::cin >> row;
-			std::cout << "Pick a column : ";
-			std::cin >> column;
-
-		}*/
+			std::cout << "\nJeff choose row: " << aiInput;
+			std::cout << "\nJeff choose column: " << aiInput;
+			graph[*randomNumber][randomNumber] = 'O';
+		}
 		
-			
-		if (graph[0][0] == 'X' && graph[0][1] == 'X' && graph[0][2] == 'X')
+		if (winCondation(flag) == false)
 		{
-			flag = false;
-			std::cout << human_player << " won!";
+			break;
 		}
-		else if (graph[1][0] == 'X' && graph[1][1] == 'X' && graph[1][2] == 'X')
-		{
-			flag = false;
-			std::cout << human_player << " won!";
-		}
-		else if (graph[2][0] == 'X' && graph[2][1] == 'X' && graph[2][2] == 'X')
-		{
-			flag = false;
-			std::cout << human_player << " won!";
-		}
-		else if (graph[2][0] == 'X' && graph[1][1] == 'X' && graph[0][2] == 'X')
-		{
-			flag = false;
-			std::cout << human_player << " won!";
-		}
-		else if (graph[2][2] == 'X' && graph[1][1] == 'X' && graph[0][0] == 'X')
-		{
-			flag = false;
-			std::cout << human_player << " won!";
-		}
-		else if (graph[0][0] == 'X' && graph[1][0] == 'X' && graph[2][0] == 'X')
-		{
-			flag = false;
-			std::cout << human_player << " won!";
-		}
-		else if (graph[0][1] == 'X' && graph[1][1] == 'X' && graph[2][1] == 'X')
-		{
-			flag = false;
-			std::cout << human_player << " won!";
-		}
-		else if (graph[0][2] == 'X' && graph[1][2] == 'X' && graph[2][2] == 'X')
-		{
-			flag = false;
-			std::cout << human_player << " won!";
-		}
+		
 	}
 	
 }
 
-int gameBroad::randomNumber()
+bool gameBroad::winCondation(bool flag)
 {
-	int min = 0;
-	int max = 3;
+	
+	if (graph[0][0] == 'X' && graph[0][1] == 'X' && graph[0][2] == 'X')
+	{
+		std::cout << human_player << " won!";
+		return flag = false;
+	}
+	else if (graph[1][0] == 'X' && graph[1][1] == 'X' && graph[1][2] == 'X')
+	{
+		
+		std::cout << human_player << " won!";
+		return flag = false;
+	}
+	else if (graph[2][0] == 'X' && graph[2][1] == 'X' && graph[2][2] == 'X')
+	{
+		
+		std::cout << human_player << " won!";
+		return flag = false;
+	}
+	else if (graph[2][0] == 'X' && graph[1][1] == 'X' && graph[0][2] == 'X')
+	{
+		
+		std::cout << human_player << " won!";
+		return flag = false;
+	}
+	else if (graph[2][2] == 'X' && graph[1][1] == 'X' && graph[0][0] == 'X')
+	{
+		
+		std::cout << human_player << " won!";
+		return flag = false;
+	}
+	else if (graph[0][0] == 'X' && graph[1][0] == 'X' && graph[2][0] == 'X')
+	{
+		std::cout << human_player << " won!";
+		return flag = false;
+	}
+	else if (graph[0][1] == 'X' && graph[1][1] == 'X' && graph[2][1] == 'X')
+	{
+		
+		std::cout << human_player << " won!";
+		return flag = false;
+	}
+	else if (graph[0][2] == 'X' && graph[1][2] == 'X' && graph[2][2] == 'X')
+	{
+		
+		std::cout << human_player << " won!";
+		return flag = false;
+	}
+	return flag;
+}
+
+int* gameBroad::randomNumber()
+{
+	
 
 	std::random_device seed; // seed for random number engine
 	std::mt19937 gen(seed()); // Mister tiwist engine
 
-	std::uniform_int_distribution<int> distr(min, max);
+	std::uniform_int_distribution<int>* distr;
+	distr = new std::uniform_int_distribution<int>;
 
-	return distr(gen);
+	return static_cast<int*>(distr->max()), distr->min();
+}
+
+int gameBroad::aiInput()
+{
+	int randomInput = randomNumber();
+	return static_cast<int>(randomInput);
 }
 
 

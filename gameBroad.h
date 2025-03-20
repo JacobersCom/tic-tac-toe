@@ -3,7 +3,8 @@
 
 class gameBroad {
 
-	int row, column;
+public:
+	int row, column = 0;
 	std::string human_player, computer_player;
 	
 	char graph[3][3] = {
@@ -14,13 +15,14 @@ class gameBroad {
 
 	};
 
-public:
 	
 	gameBroad();
 	void update() const ;
 	void Menu();
 	void gamePlayLoop();
-	int randomNumber();
+	bool winCondation(bool flag);
+	int* randomNumber();
+	int aiInput();
 
 	
 
