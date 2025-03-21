@@ -21,7 +21,6 @@ public:
 	void Menu();
 	void gamePlayLoop();
 	bool winCondation(bool flag);
-	int* randomNumber();
 	int aiInput();
 
 	

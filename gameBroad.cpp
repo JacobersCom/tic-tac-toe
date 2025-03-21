@@ -68,9 +68,9 @@ void gameBroad::gamePlayLoop()
 			system("CLS");
 			std::cout << "Jeff\n\n";
 			update();
-			std::cout << "\nJeff choose row: " << aiInput;
-			std::cout << "\nJeff choose column: " << aiInput;
-			graph[*randomNumber][randomNumber] = 'O';
+            std::cout << "\nJeff choose row: " << aiInput();
+			std::cout << "\nJeff choose column: " << aiInput();
+			graph[aiInput()][aiInput()] = 'O';
 		}
 		
 		if (winCondation(flag) == false)
@@ -134,22 +134,14 @@ bool gameBroad::winCondation(bool flag)
 	return flag;
 }
 
-int* gameBroad::randomNumber()
+int gameBroad::aiInput()
 {
-	
-
 	std::random_device seed; // seed for random number engine
 	std::mt19937 gen(seed()); // Mister tiwist engine
 
-	std::uniform_int_distribution<int>* distr;
-	distr = new std::uniform_int_distribution<int>;
+	std::uniform_int_distribution<int> distr(0, 2);
 
-	return static_cast<int*>(distr->max()), distr->min();
-}
-
-int gameBroad::aiInput()
-{
-	int randomInput = randomNumber();
+	int randomInput = distr(gen);
 	return static_cast<int>(randomInput);
 }
 
