@@ -54,24 +54,15 @@ void gameBroad::gamePlayLoop()
 	update();
 	while (flag) {
 
-		std::cout << "\nPick a row : ";
+		std::cout << "\n" << human_player << " pick a row : ";
 		std::cin >> row;
-		std::cout << "Pick a column : ";
+		std::cout << human_player << " pick a column : ";
 		std::cin >> column;
+		std::cout << "\n";
 
 		graph[row][column] = ' X';
 
-		update();
-
-		if (graph[row][column] == 'X')
-		{
-			system("CLS");
-			std::cout << "Jeff\n\n";
-			update();
-            std::cout << "\nJeff choose row: " << aiInput();
-			std::cout << "\nJeff choose column: " << aiInput();
-			graph[aiInput()][aiInput()] = 'O';
-		}
+		aiInput();
 		
 		if (winCondation(flag) == false)
 		{
@@ -141,8 +132,35 @@ int gameBroad::aiInput()
 
 	std::uniform_int_distribution<int> distr(0, 2);
 
-	int randomInput = distr(gen);
-	return static_cast<int>(randomInput);
+	int randomInput1 = distr(gen);
+	int randomInput2 = distr(gen);
+	
+	if (graph[row][column] == 'X')
+	{
+		for (int i = 0; i <= row; i++) {
+			
+			for (int j = 0; j <= column; j++)
+			{
+				if (i == row && j == column)
+				{
+					if (i != 2 || j != 2)
+					{
+						graph[++i][++j] = 'O';
+					}
+					else
+					{
+						graph[--i][--j] = 'O';
+					}
+				}
+			}
+		}
+
+		std::cout << "\nJeff choose row: " << ++row;
+		std::cout << "\n";
+		std::cout << "Jeff choose column: " << ++column << "\n\n";
+		update();
+	}
+	return 0;
 }
 
 
