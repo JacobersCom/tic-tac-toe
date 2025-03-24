@@ -2,8 +2,8 @@
 
 gameBroad::gameBroad()
 {
-	this->row;
-	this->column;
+	this->user_row;
+	this->user_column;
 	this->graph;
 	this->human_player;
 	this->computer_player;
@@ -55,12 +55,12 @@ void gameBroad::gamePlayLoop()
 	while (flag) {
 
 		std::cout << "\n" << human_player << " pick a row : ";
-		std::cin >> row;
+		std::cin >> user_row;
 		std::cout << human_player << " pick a column : ";
-		std::cin >> column;
+		std::cin >> user_column;
 		std::cout << "\n";
 
-		graph[row][column] = ' X';
+		graph[user_row][user_column] = 'X';
 
 		aiInput();
 		
@@ -126,40 +126,34 @@ bool gameBroad::winCondation(bool flag)
 }
 
 int gameBroad::aiInput()
-{
-	std::random_device seed; // seed for random number engine
-	std::mt19937 gen(seed()); // Mister tiwist engine
+{	
+	int computer_row = 0;
+	int computer_column = 0;
 
-	std::uniform_int_distribution<int> distr(0, 2);
-
-	int randomInput1 = distr(gen);
-	int randomInput2 = distr(gen);
-	
-	if (graph[row][column] == 'X')
+	if (graph[user_row][user_column] == 'X')
 	{
-		for (int i = 0; i <= row; i++) {
-			
-			for (int j = 0; j <= column; j++)
-			{
-				if (i == row && j == column)
-				{
-					if (i != 2 || j != 2)
-					{
-						graph[++i][++j] = 'O';
-					}
-					else
-					{
-						graph[--i][--j] = 'O';
-					}
-				}
-			}
-		}
+		for (computer_row; computer_row <= user_row; computer_row++) { // looping to find the row x is in 
 
-		std::cout << "\nJeff choose row: " << ++row;
-		std::cout << "\n";
-		std::cout << "Jeff choose column: " << ++column << "\n\n";
-		update();
+			for (computer_row; computer_column <= user_column; computer_column++) // looping to find the column x is in 
+			{}
+		}
+		if (computer_row == 3)
+		{
+			--computer_row; 
+		}
+		if (computer_column == 3)
+		{
+			--computer_column;
+		}
+		
 	}
+	
+	graph[computer_row][computer_column] = '0';
+		std::cout << "\nJeff choose row: " << computer_row;
+		std::cout << "\n";
+		std::cout << "Jeff choose column: " << computer_column << "\n\n";
+		update();
+		
 	return 0;
 }
 
