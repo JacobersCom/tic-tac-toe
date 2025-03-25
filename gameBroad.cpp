@@ -132,23 +132,32 @@ int gameBroad::aiInput()
 
 	if (graph[user_row][user_column] == 'X')
 	{
-		for (computer_row; computer_row <= user_row; computer_row++) { // looping to find the row x is in 
+		//for (computer_row; computer_row <= user_row; computer_row++) { // looping to find the row x is in 
 
-			for (computer_row; computer_column <= user_column; computer_column++) // looping to find the column x is in 
-			{}
+		//	for (computer_row; computer_column <= user_column; computer_column++) // looping to find the column x is in 
+		//	{
+		//	
+		//	}
+		//}
+		bool flag = true;
+		while (flag) {
+			
+			for (size_t i = 0; i < sizeof(graph); ++i)
+			{
+				for (size_t j = 0; j < sizeof(graph); ++j)
+				{
+					if (graph[i][j] == ' ')
+					{
+						graph[i][j] = '0';
+						flag = false;
+					}
+				}
+			}
 		}
-		if (computer_row == 3)
-		{
-			--computer_row; 
-		}
-		if (computer_column == 3)
-		{
-			--computer_column;
-		}
+		
 		
 	}
 	
-	graph[computer_row][computer_column] = '0';
 		std::cout << "\nJeff choose row: " << computer_row;
 		std::cout << "\n";
 		std::cout << "Jeff choose column: " << computer_column << "\n\n";
