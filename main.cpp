@@ -2,12 +2,13 @@
 #include "gameBroad.h"
 
 
-gameBroad broad;
+gameBroad board;
 
 
 int main() {
 
-	broad.Menu();
-	broad.gamePlayLoop();
+	board.Menu();
+	board.gamePlayLoop();
+
 }
 
