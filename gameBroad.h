@@ -5,7 +5,7 @@ class gameBroad {
 
 public:
 	int user_row, user_column = 0;
-	std::string human_player, computer_player;
+	std::string human_player, computer_player, human_player2;
 	
 	char graph[3][3] = {
 
@@ -22,6 +22,7 @@ public:
 	void gamePlayLoop();
 	bool winCondation(bool flag);
 	int aiInput();
+	
 
 	
 

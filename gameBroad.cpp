@@ -7,6 +7,7 @@ gameBroad::gameBroad()
 	this->graph;
 	this->human_player;
 	this->computer_player;
+	this->human_player2;
 }
 
 void gameBroad::update() const 
@@ -19,7 +20,7 @@ void gameBroad::update() const
 
 			if (columns < 2)
 			{
-				std::cout << "|"; // column divider
+				std::cout << " |"; // column divider
 				
 
 			}
@@ -40,9 +41,10 @@ void gameBroad::update() const
 void gameBroad::Menu()
 {	
 	std::cout << "Welcome to Tic-Tac-Toe!\n\n";
-	std::cout << "What's your name? : ";
+	std::cout << "Player 1 name : ";
 	std::cin >> human_player;
-	system("CLS");
+	std::cout << "Player 2 name : ";
+	std::cin >> human_player2;
 	std::cout << human_player;
 	std::cout << "\n\n ";
 	
@@ -62,7 +64,6 @@ void gameBroad::gamePlayLoop()
 
 		graph[user_row][user_column] = 'X';
 
-		aiInput();
 		
 		if (winCondation(flag) == false)
 		{
@@ -127,18 +128,11 @@ bool gameBroad::winCondation(bool flag)
 
 int gameBroad::aiInput()
 {	
-	int computer_row = 0;
-	int computer_column = 0;
+	int computer_row = rand() % 2;
+	int computer_column = rand() % 2;
 
 	if (graph[user_row][user_column] == 'X')
 	{
-		//for (computer_row; computer_row <= user_row; computer_row++) { // looping to find the row x is in 
-
-		//	for (computer_row; computer_column <= user_column; computer_column++) // looping to find the column x is in 
-		//	{
-		//	
-		//	}
-		//}
 		bool flag = true;
 		while (flag) {
 			
@@ -148,17 +142,25 @@ int gameBroad::aiInput()
 				{
 					if (graph[i][j] == ' ')
 					{
-						graph[i][j] = '0';
+						
+						graph[computer_row][computer_column] = '0';
+						flag = false;
+					}
+					else if (graph[i][j] == 'X')
+					{
+						graph[computer_row][computer_column] = 'X';
 						flag = false;
 					}
 				}
 			}
+			
 		}
 		
-		
+		computer_row != 0 ? --computer_row : --computer_column;
+		computer_column != 0 ? --computer_column : --computer_row;
 	}
 	
-		std::cout << "\nJeff choose row: " << computer_row;
+		std::cout << "\nJeff choose row: " << computer_row ;
 		std::cout << "\n";
 		std::cout << "Jeff choose column: " << computer_column << "\n\n";
 		update();
