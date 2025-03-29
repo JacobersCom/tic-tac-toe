@@ -1,16 +1,19 @@
 #include <iostream>
 
 class Node {
-	
+
 public:
 
 	int data; // Value being stored
 	Node* left; // Pointer to the left child
 	Node* right; // Pointer to the  right child
 
-	Node();
 
-	Node* root_check(Node* root);
+	//Data member inilitilzed
+	Node(int node_data, Node* node_left, Node* node_right)
+		: data(node_data), left(node_left), right(node_right)
+
+		Node* search(int data, Node* node);
 }
 
 

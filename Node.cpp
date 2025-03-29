@@ -1,18 +1,19 @@
 #include "Node.h"
 
-Node::Node()
+Node* Node::search(int data, Node* node)
 {
-	this->data;
-	left = nullptr;
-	right = nullptr;
-}
-
-Node* Node::root_check(Node* root)
-{
-	Node* temp = root; 
-
-	if (temp->left)
+	
+	if (node == nullptr || node->data == data)
 	{
-
+		return node;
 	}
+	else if (data < node->data) {
+		
+		return search(data, node->left);
+	}
+	else if (data > node->data) {
+		
+		return search(data, node->right);
+	}
+	
 }
