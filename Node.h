@@ -10,10 +10,10 @@ public:
 
 
 	//Data member inilitilzed
-	Node(int node_data, Node* node_left, Node* node_right)
-		: data(node_data), left(node_left), right(node_right)
-
-		Node* search(int data, Node* node);
-}
+	Node();
+	Node(int node_data, Node* node_left, Node* node_right);
+	Node* search(int data, Node* node);
+	Node* insert(int data, Node* node);
+};
 
 
