@@ -10,6 +10,9 @@
     <ClCompile Include="gameBroad.h">
       <Filter>header</Filter>
     </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -18,5 +21,10 @@
     <Filter Include="header">
       <UniqueIdentifier>{b40b6b19-ebda-4c8c-899c-8a20ac1d1d22}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Node.h">
+      <Filter>header</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
