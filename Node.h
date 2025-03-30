@@ -10,10 +10,13 @@ public:
 
 
 	//Data member inilitilzed
-	Node();
-	Node(int node_data, Node* node_left, Node* node_right);
-	Node* search(int data, Node* node);
-	Node* insert(int data, Node* node);
+	Node(int node_data);
+	
+	Node* search_node(int data, Node* node);
+	Node* insert_node(int data, Node* node);
+	Node* delete_node(int data_to_delete, Node* node);
+	Node* traverse_tree(Node* node);
+	Node* lift(Node* node, Node* node_to_delete);
 };
 
 

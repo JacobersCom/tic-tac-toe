@@ -1,14 +1,21 @@
 #include <iostream>
 #include "gameBroad.h"
+#include "Node.h"
 
 
 gameBroad board;
-
+Node node(1);
 
 int main() {
 
-	board.Menu();
-	board.gamePlayLoop();
+	/*board.Menu();
+	board.gamePlayLoop();*/
+
+	Node* root = new Node(10);
+	root->left = new Node(5);
+	root->right = new Node(20);
+	Node* temp = root->left;
+	node.traverse_tree(root);
 
 }
 
