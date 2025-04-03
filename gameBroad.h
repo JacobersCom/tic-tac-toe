@@ -9,9 +9,9 @@ public:
 	
 	char graph[3][3] = {
 
-		{' ',' ',' '},
-		{' ',' ',' '},
-		{' ',' ',' '}
+		{'_','_','_'},
+		{'_','_','_'},
+		{'_','_','_'}
 
 	};
 
@@ -21,9 +21,5 @@ public:
 	void Menu();
 	void gamePlayLoop();
 	bool winCondation(bool flag);
-	int aiInput();
-	
-
-	
 
 };

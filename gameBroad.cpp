@@ -20,7 +20,7 @@ void gameBroad::update() const
 
 			if (columns < 2)
 			{
-				std::cout << " |"; // column divider
+				std::cout << "|"; // column divider
 				
 
 			}
@@ -30,7 +30,7 @@ void gameBroad::update() const
 
 		if (rows < 2)
 		{
-			std::cout << "-------" << "\n"; // row divider
+			std::cout << "       " << "\n"; // row divider
 		}
 	}
 
@@ -46,7 +46,7 @@ void gameBroad::Menu()
 	std::cout << "Player 2 name : ";
 	std::cin >> human_player2;
 	std::cout << human_player;
-	std::cout << "\n\n ";
+	std::cout << "\n\n";
 	
 }
 
@@ -126,47 +126,6 @@ bool gameBroad::winCondation(bool flag)
 	return flag;
 }
 
-int gameBroad::aiInput()
-{	
-	int computer_row = rand() % 2;
-	int computer_column = rand() % 2;
-
-	if (graph[user_row][user_column] == 'X')
-	{
-		bool flag = true;
-		while (flag) {
-			
-			for (size_t i = 0; i < sizeof(graph); ++i)
-			{
-				for (size_t j = 0; j < sizeof(graph); ++j)
-				{
-					if (graph[i][j] == ' ')
-					{
-						
-						graph[computer_row][computer_column] = '0';
-						flag = false;
-					}
-					else if (graph[i][j] == 'X')
-					{
-						graph[computer_row][computer_column] = 'X';
-						flag = false;
-					}
-				}
-			}
-			
-		}
-		
-		computer_row != 0 ? --computer_row : --computer_column;
-		computer_column != 0 ? --computer_column : --computer_row;
-	}
-	
-		std::cout << "\nJeff choose row: " << computer_row ;
-		std::cout << "\n";
-		std::cout << "Jeff choose column: " << computer_column << "\n\n";
-		update();
-		
-	return 0;
-}
 
 
 
