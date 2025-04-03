@@ -1,20 +1,16 @@
 #include <iostream>
 #include "gameBroad.h"
-
+#include "MiniMax.h"
 
 
 gameBroad board;
+MiniMax max;
 
 int main() {
 
 	/*board.Menu();
 	board.gamePlayLoop();*/
 
-	Node* root = new Node(10);
-	root->left = new Node(5);
-	root->right = new Node(20);
-	Node* temp = root->left;
-	node.traverse_tree(root);
-
+	max.empty_cell_check();
 }
 

@@ -2,20 +2,29 @@
 
 MiniMax::MiniMax()
 {
-
+	minimax_player = false;
+	score = NULL;
+	broad.graph;
 }
 
-int MiniMax::minimax(Node* node, int depth, bool minimax)
+//int MiniMax::minimax(Node* node, int depth, bool minimax)
+//{
+//
+//}
+
+char MiniMax::empty_cell_check()
 {
-	if (depth = 0 || node->left == nullptr && node->right == nullptr)
+	for (size_t i = 0; i <= 2; i++)
 	{
-		return node->data;
+		for (size_t j = 0; j <= 2; j++)
+		{
+			if (broad.graph[i][j] == '_')
+			{
+				std::cout << broad.graph[i][j];
+			}
+		}
 	}
-	if (minimax == true)
-	{
-		score = -INFINITY;
-		for(Node it: node)
-	}
+	return broad.graph[3][3];
 }
 
 
