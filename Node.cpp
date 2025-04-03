@@ -8,72 +8,58 @@ Node::Node(int node_data)
 	data = node_data;
 }
 
-Node* Node::search_node(int data, Node* node)
+Node* Node::search_node(int node_data, Node* node)
 {
-	// Check wither node is nullptr or has the data 
-	// we are looking for 
-	if (node == nullptr || node->data == data)
+	// --- Is this the data you are looking for? ---
+	if (node == nullptr || node->data == node_data)
 	{
 		return node;
 	}
-	else if (data < node->data) {
+	else if (node_data < node->data) {
 		
-		// performing a recurive call if the data is less
-		// than the data stored in the current noded search 
-		// through the left tree
-		
-		return search_node(data, node->left);
+		// --- Searches left side of tree ---
+		return search_node(node_data, node->left);
 	}
-	else if (data > node->data) {
+	else if (node_data > node->data) {
 		
-		// performing a recurive call if the data is less
-		// than the data stored in the current noded search 
-		// through the right tree
-
-		return search_node(data, node->right);
+		// --- Searches right side of tree ---
+		return search_node(node_data, node->right);
 	}
 	
 	return node;
 	
 }
 
-Node* Node::insert_node(int data, Node* node)
+Node* Node::insert_node(int node_data, Node* node)
 {
-	// check wither the value is less than the root
-	if (data < node->data)
+	// --- Is the less than the root ---
+	if (node_data < node->data)
 	{
-		// check if root hads a child node
+		// --- Is there a node already there ---
 		if (node->left == nullptr)
 		{
-			// If root doesnt have a left child 
-			// create a left child
-
-			node->left = new Node(data);
+			// --- No? Put a new node there ---
+			node->left = new Node(node_data);
 		}
 		else
 		{
-			// else perform a recirsive call to search for 
-			// a empty spot within the tree
-			insert_node(data, node->left);
+			// --- Look for a empty space in the left subtree --- 
+			insert_node(node_data, node->left);
 		}
 	}
-	// check wither the value is less than the root
-	if (data > node->data)
+	// --- Is the data less than root? ---
+	if (node_data > node->data)
 	{
-		// check if root hads a child node
+		// --- Is there a node already here ---
 		if (node->right == nullptr)
 		{
-			// If root doesnt have a left child 
-			// create a left child
-
-			node->right = new Node(data);
+			// --- No? Put a new node there ---
+			node->right = new Node(node_data);
 		}
 		else
 		{
-			// else perform a recirsive call to search for 
-			// a empty spot within the tree
-
-			insert_node(data, node->right);
+			// --- Look down the right subtree ---
+			insert_node(node_data, node->right);
 		}
 	}
 	return node;
@@ -81,40 +67,27 @@ Node* Node::insert_node(int data, Node* node)
 
 Node* Node::delete_node(int data_to_delete, Node* node)
 {
-	//Base case so the function doesnt call on its self forever
+	// --- base case ---
 	if (node == nullptr) {
 		
 		return node;
 	}
-	if (data < node->data) {
+	if (data_to_delete < node->data) {
 		
-		// Nothing is being overwritten here
-		// We are calling deletion to check if this is the node we are looking 
-		// for. if not the function we call on its self till it founds the 
-		// Node we are looking for.
-
-		node->left = delete_node(data, node->left);
+		// --- Looking down the left subtree ---
+		node->left = delete_node(data_to_delete, node->left);
 		return node;
 	}
-	else if (data > node->data)
+	else if (data_to_delete > node->data)
 	{
-		// Nothing is being overwritten here
-		// We are calling deletion to check if this is the node we are looking 
-		// for. if not the function we call on its self till it founds the 
-		// Node we are looking for.
-
-		node->right = delete_node(data, node->right);
+		// --- Looking down the right subtree ---
+		node->right = delete_node(data_to_delete, node->right);
 		return node;
 	}
-	if (data == node->data) 
+	// --- HHAHA I FOUND YOU ---
+	if (data_to_delete == node->data)
 	{	
-		// Checking if the current node is the one we want to 
-		// delete
-
-		// Running another check for a left and right child.
-		// Which node is returned will become the pervious node
-		// left or right child
-
+		// --- If node has one child ---
 		if (node->left == nullptr) {
 			return node->right;
 		}
@@ -124,8 +97,7 @@ Node* Node::delete_node(int data_to_delete, Node* node)
 		}
 		else
 		{
-			// Here we call a function called lift which takes the 
-			// node we want to use to replce the node we want to delete
+			// --- If node has two childs ---
 			node->right = lift(node->right, node);
 			return node; 
 		}
@@ -135,19 +107,16 @@ Node* Node::delete_node(int data_to_delete, Node* node)
 
 Node* Node::lift(Node* node, Node* node_to_delete)
 {
-	// if its a left node in the right subtree
+	// --- Searching for a node to overwrite the parent node ---
 	if (node->left)
 	{
-		// preform a recurive call to find the smallest node
-		// in the right subtree
+
 		node->left = lift(node->left, node_to_delete);
 		return node;
 	}
 	else
 	{
-		// if its not a left node set the current node to the one
-		// we want to delete and overwrite it with the right child
-		// of the current node
+		// --- Overwrite node with right child ---
 		node_to_delete->data = node->data;
 		return node->right;
 	}
