@@ -2,25 +2,16 @@
 
 #include<iostream>
 #include "gameBroad.h"
+#include "Node.h"
 
 
 class MiniMax
 { 
-	char current_broad_state[3][3] = {
-
-		 {'_','_','_'},
-		 {'_','_','_'},
-		 {'_','_','_'}
-
-	};
-
-	char ai_mark = '0';
-	char human_mark = 'X';
-
+	bool minimax;
+	int score; 
 public:
 	
 	MiniMax();
-	char get_all_empty_cells();
-	void winner_check(char currbs, char currmark);
-};
 
+	int minimax(Node* node, int depth, bool minimax);
+};
