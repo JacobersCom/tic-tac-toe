@@ -1,10 +1,8 @@
 #pragma once
 
-#include<iostream>
 #include "gameBroad.h"
 #include "Node.h"
-
-class gameBroad;
+#include<iostream>
 
 class MiniMax
 { 
@@ -15,6 +13,6 @@ class MiniMax
 public:
 	
 	MiniMax();
-	int minimax(Node* node, int depth, bool minimax);
+	/*int minimax(Node* node, int depth, bool minimax);*/
 	char empty_cell_check();
 };

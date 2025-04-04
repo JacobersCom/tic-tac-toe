@@ -4,7 +4,6 @@ MiniMax::MiniMax()
 {
 	minimax_player = false;
 	score = NULL;
-	broad.graph;
 }
 
 //int MiniMax::minimax(Node* node, int depth, bool minimax)
