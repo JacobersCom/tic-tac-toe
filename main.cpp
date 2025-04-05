@@ -7,8 +7,8 @@ MiniMax max;
 
 int main() {
 
-	/*board.Menu();
-	board.gamePlayLoop();*/
+	board.Menu();
+	board.gamePlayLoop();
 
 	max.empty_cell_check();
 }

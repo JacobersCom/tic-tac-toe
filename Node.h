@@ -1,16 +1,18 @@
 #pragma once
 
+template<typename node>
 class Node
 {
 public: 
 
-	int data;
-	Node* left;
-	Node* right;
+	node* data;
+	node* left;
+	node* right;
 
-	Node* search_node(int data, Node* node);
-	Node* insert_node(int data, Node* node);
-	Node* delete_node(int data_to_delete, Node* node);
+	Node(node* node_data);
+	Node* search_node(node* data, Node* node);
+	Node* insert_node(node* data, Node* node);
+	Node* delete_node(node* data_to_delete, Node* node);
 	Node* lift(Node* node, Node* node_to_delete);
 	Node* traverse_tree(Node* node);
 };

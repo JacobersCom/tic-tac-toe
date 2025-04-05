@@ -17,13 +17,12 @@ char MiniMax::empty_cell_check()
 	{
 		for (size_t j = 0; j <= 2; j++)
 		{
-			if (broad.graph[i][j] == '_')
+			if (broad.graph[i] == '_')
 			{
-				std::cout << broad.graph[i][j];
+				return broad.graph[i];
 			}
 		}
 	}
-	return broad.graph[3][3];
 }
 
 
