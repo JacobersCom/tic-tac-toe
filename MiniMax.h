@@ -15,4 +15,5 @@ public:
 	MiniMax();
 	/*int minimax(Node* node, int depth, bool minimax);*/
 	char empty_cell_check();
+	void copy_broad();
 };

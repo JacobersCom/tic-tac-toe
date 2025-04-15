@@ -1,18 +1,18 @@
 #pragma once
 
-template<typename node>
+template<typename T>
 class Node
 {
 public: 
 
-	node* data;
-	node* left;
-	node* right;
+	T* data;
+	Node* left;
+	Node* right;
 
-	Node(node* node_data);
-	Node* search_node(node* data, Node* node);
-	Node* insert_node(node* data, Node* node);
-	Node* delete_node(node* data_to_delete, Node* node);
-	Node* lift(Node* node, Node* node_to_delete);
-	Node* traverse_tree(Node* node);
+	Node(T* node_data) : data(node_data) {}
+	Node<T>* search_node(T* node_data, Node* node);
+	Node<T>* insert_node(T* data, Node* node);
+	Node<T>* delete_node(T* data_to_delete, Node* node);
+	Node<T>* lift(Node* node, Node* node_to_delete);
+	Node<T>* traverse_tree(Node* node);
 };

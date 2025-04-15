@@ -25,5 +25,13 @@ char MiniMax::empty_cell_check()
 	}
 }
 
+void MiniMax::copy_broad()
+{
+	if (minimax_player == true) {
+		empty_cell_check();
+		Node* broad = new Node(empty_cell_check);
+	}
+}
+
 
 

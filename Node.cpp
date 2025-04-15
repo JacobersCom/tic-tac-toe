@@ -1,14 +1,9 @@
 #include "Node.h"
 
 
-Node::Node(int node_data)
-{
-	left = nullptr;
-	right = nullptr;
-	data = node_data;
-}
+Node<T>::Node(T node_data) : data(node_data), left(nullptr), right(nullptr) {}
 
-Node* Node::search_node(int data, Node* node)
+Node<T>* Node::search_node(T* data, node* node)
 {
 	if (node == nullptr || node->data == data)
 	{
