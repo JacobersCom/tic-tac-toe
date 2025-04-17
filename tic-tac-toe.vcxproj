@@ -136,7 +136,6 @@
   <ItemGroup>
     <ClInclude Include="MiniMax.h" />
     <ClInclude Include="Node.h" />
-    <ClInclude Include="Node.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

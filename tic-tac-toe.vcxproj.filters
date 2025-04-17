@@ -10,7 +10,12 @@
     <ClCompile Include="gameBroad.h">
       <Filter>header</Filter>
     </ClCompile>
-    <ClCompile Include="MiniMax.cpp" />
+    <ClCompile Include="MiniMax.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -21,8 +26,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MiniMax.h" />
     <ClInclude Include="Node.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniMax.h">
       <Filter>header</Filter>
     </ClInclude>
   </ItemGroup>

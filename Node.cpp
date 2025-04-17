@@ -1,28 +1,14 @@
 #include "Node.h"
 
-
-Node<T>::Node(T node_data) : data(node_data), left(nullptr), right(nullptr) {}
-
-Node<T>* Node::search_node(T* data, node* node)
+Node::Node(char* node_data)
 {
-	if (node == nullptr || node->data == data)
-	{
-		return node;
-	}
-	else if (data < node->data) {
-		
-		return search_node(data, node->left);
-	}
-	else if (data > node->data) {
-
-		return search_node(data, node->right);
-	}
-	
-	return node;
-	
+	data = node_data;
+	left = nullptr;
+	right = nullptr;
 }
 
-Node* Node::insert_node(int data, Node* node)
+
+Node* Node::insert_node(char* data, Node* node)
 {
 	if (data < node->data)
 	{
@@ -50,14 +36,14 @@ Node* Node::insert_node(int data, Node* node)
 	return node;
 }
 
-Node* Node::delete_node(int data_to_delete, Node* node)
+Node* Node::delete_node(char* data, Node* node)
 {
 	if (node == nullptr) {
-		
+
 		return node;
 	}
 	if (data < node->data) {
-	
+
 		node->left = delete_node(data, node->left);
 		return node;
 	}
@@ -66,8 +52,8 @@ Node* Node::delete_node(int data_to_delete, Node* node)
 		node->right = delete_node(data, node->right);
 		return node;
 	}
-	if (data == node->data) 
-	{	
+	if (data == node->data)
+	{
 
 		if (node->left == nullptr) {
 			return node->right;
@@ -79,11 +65,31 @@ Node* Node::delete_node(int data_to_delete, Node* node)
 		else
 		{
 			node->right = lift(node->right, node);
-			return node; 
+			return node;
 		}
 	}
 	return node;
 }
+
+
+Node* Node::search_node(char* data, Node* node)
+{
+	if (node == nullptr || node->data == data)
+	{
+		return node;
+	}
+	else if (data < node->data) {
+
+		return search_node(data, node->left);
+	}
+	else if (data > node->data) {
+
+		return search_node(data, node->right);
+	}
+
+	return node;
+}
+
 
 Node* Node::lift(Node* node, Node* node_to_delete)
 {
@@ -100,6 +106,7 @@ Node* Node::lift(Node* node, Node* node_to_delete)
 	}
 }
 
+ 
 Node* Node::traverse_tree(Node* node)
 {
 	if (node == nullptr)
@@ -107,6 +114,5 @@ Node* Node::traverse_tree(Node* node)
 		return node;
 	}
 	traverse_tree(node->left);
-	std::cout << node->data << std::endl;
 	traverse_tree(node->right);
 }
