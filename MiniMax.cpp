@@ -23,6 +23,7 @@ char MiniMax::empty_cell_check()
 			}
 		}
 	}
+	return '1';
 }
 
 

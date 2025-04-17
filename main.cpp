@@ -3,7 +3,7 @@
 
 
 gameBroad board;
-MiniMax;
+MiniMax max;
 
 int main() {
 

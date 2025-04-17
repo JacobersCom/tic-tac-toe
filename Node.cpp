@@ -1,6 +1,6 @@
 #include "Node.h"
 
-Node::Node(char* node_data)
+Node::Node(char node_data)
 {
 	data = node_data;
 	left = nullptr;
@@ -8,7 +8,7 @@ Node::Node(char* node_data)
 }
 
 
-Node* Node::insert_node(char* data, Node* node)
+Node* Node::insert_node(char data, Node* node)
 {
 	if (data < node->data)
 	{
@@ -36,7 +36,7 @@ Node* Node::insert_node(char* data, Node* node)
 	return node;
 }
 
-Node* Node::delete_node(char* data, Node* node)
+Node* Node::delete_node(char data, Node* node)
 {
 	if (node == nullptr) {
 
@@ -72,7 +72,7 @@ Node* Node::delete_node(char* data, Node* node)
 }
 
 
-Node* Node::search_node(char* data, Node* node)
+Node* Node::search_node(char data, Node* node)
 {
 	if (node == nullptr || node->data == data)
 	{
@@ -107,12 +107,14 @@ Node* Node::lift(Node* node, Node* node_to_delete)
 }
 
  
-Node* Node::traverse_tree(Node* node)
+void Node::traverse_tree(Node* node)
 {
 	if (node == nullptr)
 	{
-		return node;
+		return;
 	}
 	traverse_tree(node->left);
+	std::cout << node->data << std::endl;
 	traverse_tree(node->right);
+
 }
