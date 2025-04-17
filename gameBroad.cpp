@@ -45,73 +45,19 @@ void gameBroad::gamePlayLoop()
 
 		std::cout << "\n" << human_player << " pick a row : ";
 		std::cin >> user_row;
-		std::cout << human_player << " pick a column : ";
-		std::cin >> user_column;
 		std::cout << "\n";
 
 		graph[user_row] = 'X';
+		max.copy_broad();
+		update();
+		
 		break;
 		
-		/*if (winCondation(flag) == false)
-		{
-			break;
-		}*/
 		
 	}
 	
 }
 
-//bool gameBroad::winCondation(bool flag)
-//{
-//	
-//	if (graph[0][0] == 'X' && graph[0][1] == 'X' && graph[0][2] == 'X')
-//	{
-//		std::cout << human_player << " won!";
-//		return flag = false;
-//	}
-//	else if (graph[1][0] == 'X' && graph[1][1] == 'X' && graph[1][2] == 'X')
-//	{
-//		
-//		std::cout << human_player << " won!";
-//		return flag = false;
-//	}
-//	else if (graph[2][0] == 'X' && graph[2][1] == 'X' && graph[2][2] == 'X')
-//	{
-//		
-//		std::cout << human_player << " won!";
-//		return flag = false;
-//	}
-//	else if (graph[2][0] == 'X' && graph[1][1] == 'X' && graph[0][2] == 'X')
-//	{
-//		
-//		std::cout << human_player << " won!";
-//		return flag = false;
-//	}
-//	else if (graph[2][2] == 'X' && graph[1][1] == 'X' && graph[0][0] == 'X')
-//	{
-//		
-//		std::cout << human_player << " won!";
-//		return flag = false;
-//	}
-//	else if (graph[0][0] == 'X' && graph[1][0] == 'X' && graph[2][0] == 'X')
-//	{
-//		std::cout << human_player << " won!";
-//		return flag = false;
-//	}
-//	else if (graph[0][1] == 'X' && graph[1][1] == 'X' && graph[2][1] == 'X')
-//	{
-//		
-//		std::cout << human_player << " won!";
-//		return flag = false;
-//	}
-//	else if (graph[0][2] == 'X' && graph[1][2] == 'X' && graph[2][2] == 'X')
-//	{
-//		
-//		std::cout << human_player << " won!";
-//		return flag = false;
-//	}
-//	return flag;
-//}
 
 
 

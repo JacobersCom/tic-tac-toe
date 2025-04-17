@@ -118,4 +118,3 @@ void Node::traverse_tree(Node* node)
 	traverse_tree(node->right);
 
 }
-s
