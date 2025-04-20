@@ -1,21 +1,16 @@
 #pragma once
 
+#include "gameBroad.h"
 #include "Node.h"
 #include<iostream>
 
-class gameBroad;
-
-class MiniMax
+class MiniMax : public gameBroad
 { 
-	bool minimax_player;
-	int score; 
-
+	bool minimax_player; 
 public:
 	
-	MiniMax();
+	MiniMax(): minimax_player(true) {}
 	char empty_cell_check();
 	void copy_broad();
 	void win_condational();
-
-	gameBroad broad;
 };
