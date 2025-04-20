@@ -36,6 +36,7 @@ void gameBroad::gamePlayLoop()
 	update();
 	while (flag) {
 
+<<<<<<< HEAD
 		std::cout << "\n" << minimizing_player << " pick a row : ";
 		std::cin >> input;
 		std::cout << "\n";
@@ -44,11 +45,27 @@ void gameBroad::gamePlayLoop()
 		update();
 		
 		//break;
+=======
+		std::cout << "\n" << human_player << " pick a row : ";
+		std::cin >> user_row;
+		std::cout << "\n";
+
+		graph[user_row] = 'X';
+		max.copy_broad();
+		update();
+		
+		break;
+		
+>>>>>>> MiniMax
 		
 	}
 	
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> MiniMax
 
 
 
