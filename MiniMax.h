@@ -4,16 +4,13 @@
 #include "Node.h"
 #include<iostream>
 
-class MiniMax
+class MiniMax : public gameBroad
 { 
-	gameBroad broad;
-	bool minimax_player;
-	int score; 
-
+	bool minimax_player; 
 public:
 	
-	MiniMax();
-	/*int minimax(Node* node, int depth, bool minimax);*/
+	MiniMax(): minimax_player(true){}
 	char empty_cell_check();
 	void copy_broad();
+	bool win_condational();
 };
