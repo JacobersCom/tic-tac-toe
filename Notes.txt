@@ -1,1 +1,3 @@
-Look at how to access child methods. 
+Add method at the end of "Gameplay loop" from minimax to set the run flag back to true.
+The reason it is set to false is so the AI can than run. Within the AI method
+we will set it back to true so the player can run.

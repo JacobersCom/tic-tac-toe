@@ -6,11 +6,11 @@
 
 class MiniMax : public gameBroad
 { 
-	bool minimax_player; 
 public:
+	bool miximizing_player; 
 	
-	MiniMax(): minimax_player(true) {}
+	MiniMax(): miximizing_player(true) {}
 	char empty_cell_check();
 	void copy_broad();
-	void win_condational();
+	void minimax(char board[9], bool player);
 };

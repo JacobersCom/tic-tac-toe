@@ -12,7 +12,6 @@ int main() {
 
 	board.Menu();
 	board.gamePlayLoop();
-
-	max.empty_cell_check();
+	max.minimax(board.graph, max.miximizing_player);
 }
 

@@ -6,104 +6,71 @@ char MiniMax::empty_cell_check()
 	{
 			if (graph[i] == '_')
 			{
-				return graph[i];
+				std::cout << graph[i];
 			}
 	}
-	return '1';
+	return graph[8];
 }
 
 
 void MiniMax::copy_broad()
 {
-	if (minimax_player == true) {
+	if (miximizing_player == false) {
 		empty_cell_check();
 		auto broad_copy = new Node(empty_cell_check());
-		minimax_player = false;
+		miximizing_player = true;
 		broad_copy->right = new Node(empty_cell_check());
 	}
 }
 
-
-void MiniMax::win_condational()
+void MiniMax::minimax(char board[9], bool maximizing_player)
 {
-	if (graph[0] == 'X' && graph[1] == 'X' && graph[2] == 'X') {
-
-		std::cout << "X wins" << std::endl;
-	}
-	if (graph[3] == 'X' && graph[4] == 'X' && graph[5] == 'X') {
-
-		std::cout << "X wins" << std::endl;
-	}
-	if (graph[6] == 'X' && graph[7] == 'X' && graph[8] == 'X') {
-
-		std::cout << "X wins" << std::endl;
-	}
-
-	//X wins through vertical connection
-	if (graph[0] == 'X' && graph[3] == 'X' && graph[6] == 'X') {
-
-		std::cout << "X wins" << std::endl;
-	}
-	if (graph[1] == 'X' && graph[4] == 'X' && graph[7] == 'X') {
-
-		std::cout << "X wins" << std::endl;
-	}
-	if ( graph[2] == 'X' &&  graph[5] == 'X' &&  graph[8] == 'X') {
-
-		std::cout << "X wins" << std::endl;
+	for (char i = 0; i < 8; i++)
+	{
+		if (i != '_')
+		{
+			std::cout << "Draw, no one wins!" << std::endl;
+		}
+		else
+		{
+			win_condational(win_lose);
+			return;
+		}
 	}
 
-	//X wins through diagonal connection
-	if ( graph[0] == 'X' &&  graph[4] == 'X' &&  graph[8] == 'X') {
 
-		std::cout << "X wins" << std::endl;
+	if (maximizing_player == true)
+	{
+		char i;
+		for (i = 0; i < 8; i++)
+		{
+			if (board[i] == '_')
+			{
+				board[i] = 'O';
+			}
+			minimax(board, maximizing_player); // return the current broad state
+			graph[i] = '_';
+		}
+		maximizing_player = false;
+		return minimax(board, maximizing_player);
 	}
-	if ( graph[2] == 'X' &&  graph[4] == 'X' &&  graph[6] == 'X') {
-
-		std::cout << "X wins" << std::endl;
-	}
-
-	//O win through horizontal connection
-	if ( graph[0] == 'O' &&  graph[1] == 'O' &&  graph[2] == 'O') {
-
-		std::cout << "O wins" << std::endl;
-	}
-	if ( graph[3] == 'O' &&  graph[4] == 'O' &&  graph[5] == 'O') {
-
-		std::cout << "O wins" << std::endl;
-	}
-	if ( graph[6] == 'O' &&  graph[7] == 'O' &&  graph[8] == 'O') {
-
-		std::cout << "O wins" << std::endl;
-	}
-
-	//O wins through vertical connection
-	if (  graph[0] == 'O' &&   graph[3] == 'O' &&   graph[6] == 'O') {
-
-		std::cout << "O wins" << std::endl;
-	}
-	if (  graph[1] == 'O' &&   graph[4] == 'O' &&   graph[7] == 'O') {
-
-		std::cout << "O wins" << std::endl;
-	}
-	if (  graph[2] == 'O' &&   graph[5] == 'O' &&   graph[8] == 'O') {
-
-		std::cout << "O wins" << std::endl;
-	}
-
-	//O wins through diagonal connection
-	if (  graph[0] == 'O' &&   graph[4] == 'O' &&   graph[8] == 'O') {
-
-		std::cout << "O wins" << std::endl;
-	}
-	if (  graph[2] == 'O' &&   graph[4] == 'O' &&   graph[6] == 'O') {
-
-		std::cout << "O wins" << std::endl;
-	}
-	if (  graph[0] == 'O' &&   graph[1] == 'O' &&   graph[2] == 'O') {
-
-		std::cout << "O wins" << std::endl;
+	else
+	{
+		char i;
+		for (i = 0; i < 8; i++)
+		{
+			if (board[i] == '_')
+			{
+				board[i] = 'X';
+			}
+			minimax(board, miximizing_player); // return the current broad state
+			graph[i] = '_';
+		}
+		return minimax(board, miximizing_player);
 	}
 }
+
+
+
 
 
