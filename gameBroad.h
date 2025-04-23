@@ -9,17 +9,18 @@ public:
 	int input;
 	std::string player;
 	bool minimizing_player;
-	bool win_lose;
+	int win_lose;
 	bool flag;
 	
 	char graph[9] = { '_','_','_','_','_','_','_','_','_' };
 	
 	gameBroad(){}
 
-	gameBroad(int user_input, std::string player): input(user_input), player(player), win_lose(false), flag(true), minimizing_player(true){}
+	gameBroad(int user_input, std::string player, bool mFlag, int num, bool mPlayer): 
+		input(user_input), player(player), flag(mFlag), minimizing_player(mPlayer), win_lose(num){}
 	void update() const;
 	void Menu();
 	void gamePlayLoop();
-	bool win_condational(bool flag);
+	int win_condational(int flag);
 
 };

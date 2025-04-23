@@ -23,18 +23,28 @@ void MiniMax::copy_broad()
 	}
 }
 
+
+#if 1
 void MiniMax::minimax(char board[9], bool maximizing_player)
 {
 	for (char i = 0; i < 8; i++)
 	{
 		if (i != '_')
 		{
-			std::cout << "Draw, no one wins!" << std::endl;
-		}
-		else
-		{
-			win_condational(win_lose);
-			return;
+			winner = win_condational(win_lose);
+			
+			if (winner == 1)
+			{
+				std::cout << minimizing_player << "wins!" << std::endl;
+			}
+			else if (winner == 0)
+			{
+				std::cout << "Jeff wins!!";
+			}
+			else
+			{
+				break;
+			}
 		}
 	}
 
@@ -48,9 +58,9 @@ void MiniMax::minimax(char board[9], bool maximizing_player)
 			{
 				board[i] = 'O';
 			}
-			minimax(board, maximizing_player); // return the current broad state
 			graph[i] = '_';
 		}
+		decltype(value) n = minimax(board, maximizing_player);
 		maximizing_player = false;
 		return minimax(board, maximizing_player);
 	}
@@ -63,12 +73,13 @@ void MiniMax::minimax(char board[9], bool maximizing_player)
 			{
 				board[i] = 'X';
 			}
-			minimax(board, miximizing_player); // return the current broad state
+			
 			graph[i] = '_';
 		}
 		return minimax(board, miximizing_player);
 	}
 }
+#endif
 
 
 

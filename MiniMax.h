@@ -8,8 +8,10 @@ class MiniMax : public gameBroad
 { 
 public:
 	bool miximizing_player; 
+	int winner;
+	char value;
 	
-	MiniMax(): miximizing_player(true) {}
+	MiniMax(bool player, char mValue): miximizing_player(true), value(value) {}
 	char empty_cell_check();
 	void copy_broad();
 	void minimax(char board[9], bool player);
