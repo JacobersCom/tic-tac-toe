@@ -23,9 +23,14 @@ void MiniMax::copy_broad()
 	}
 }
 
+int MiniMax::min(int best_value, char* value)
+{
+	return best_value < value ? best_value : value;
+}
+
 
 #if 1
-void MiniMax::minimax(char board[9], bool maximizing_player)
+char* MiniMax::minimax(char board[], bool maximizing_player)
 {
 	for (char i = 0; i < 8; i++)
 	{
@@ -51,6 +56,7 @@ void MiniMax::minimax(char board[9], bool maximizing_player)
 
 	if (maximizing_player == true)
 	{
+		best_value = -INFINITY;
 		char i;
 		for (i = 0; i < 8; i++)
 		{
@@ -60,12 +66,14 @@ void MiniMax::minimax(char board[9], bool maximizing_player)
 			}
 			graph[i] = '_';
 		}
-		decltype(value) n = minimax(board, maximizing_player);
+		value = minimax(board, maximizing_player);
 		maximizing_player = false;
-		return minimax(board, maximizing_player);
+		best_value = min(best_value, value);
+		return
 	}
 	else
 	{
+		best_value = +INFINITY;
 		char i;
 		for (i = 0; i < 8; i++)
 		{
@@ -76,6 +84,8 @@ void MiniMax::minimax(char board[9], bool maximizing_player)
 			
 			graph[i] = '_';
 		}
+		value = minimax(board, maximizing_player);
+		minimizing_player = false;
 		return minimax(board, miximizing_player);
 	}
 }
