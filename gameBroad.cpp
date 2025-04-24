@@ -35,7 +35,7 @@ void gameBroad::gamePlayLoop()
 		std::cin >> input;
 		std::cout << "\n";
 
-		graph[input] = 'O';
+		graph[input] = 'X';
 		update();
 		if (win_condational(win_lose) == 1 || win_condational(win_lose) == 0)
 		{
@@ -43,6 +43,7 @@ void gameBroad::gamePlayLoop()
 		}
 		
 		minimizing_player = false;
+		break;
 	}
 
 }
