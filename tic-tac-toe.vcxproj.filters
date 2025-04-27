@@ -33,4 +33,7 @@
       <Filter>header</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Pro_log.txt" />
+  </ItemGroup>
 </Project>

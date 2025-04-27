@@ -1,0 +1,14 @@
+Goal:
+
+I to take the minimax algo, and take the first input from the Ai and place
+it on the board.
+
+Issues: 
+
+Currently the algo runs but doesn't place anything on the board. Why? because
+the code for that functionailty isn't in the game yet. 
+
+Fixes:
+
+To make this possbile, I need to find a way to to take the first iteration of the 
+algo and place it on to the board.

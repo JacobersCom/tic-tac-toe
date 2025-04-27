@@ -61,28 +61,30 @@ int MiniMax::minimax(char board[], bool maximizing_player)
 	if (maximizing_player == true)
 	{
 		best_value = -INFINITY;
-		for (char i = 0; i < 8; i++) // looping through each empty cell
+		size_t iter;
+		for (iter = 0; iter < 8; iter++) 
 		{
-			if (board[i] == '_')
+			if (board[iter] == '_')
 			{
-				board[i] = 'O';
+				board[iter] = 'O';
 				value = new char(minimax(board, false));
-				graph[i] = '_';
+				board[iter] = '_';
 				best_value = min(best_value, value);
+				copy_broad();
 			}
 		}
-		return best_value;
+		return iter == '_';
+		 
 	}
 	else {
-		best_value = +INFINITY;
-		// looping through each empty cell 
-		for (char i = 0; i < 8; i++) 
+		best_value = INFINITY; 
+		for (auto i = 0; i < 8; i++) 
 		{
 			if (board[i] == '_') 
 			{
 				board[i] = 'X';
 				value = new char(minimax(board, true));
-				graph[i] = '_';
+				board[i] = '_';
 				best_value = min(best_value, value);
 			}
 			
@@ -91,6 +93,7 @@ int MiniMax::minimax(char board[], bool maximizing_player)
 	}
 }
 #endif
+
 
 
 

@@ -19,4 +19,5 @@ public:
 	int minimax(char board[9], bool player);
 	int min(int best_vaule, char* value);
 	int max(int best_value, char* value);
+	void ai_loop(char board[], bool player);
 };

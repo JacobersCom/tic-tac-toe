@@ -25,7 +25,7 @@ void gameBroad::Menu()
 	
 }
 
-void gameBroad::gamePlayLoop()
+void gameBroad::gamePlayLoop()//put bool
 {
 	update();
 	while (true) {
@@ -36,7 +36,6 @@ void gameBroad::gamePlayLoop()
 		std::cout << "\n";
 
 		graph[input] = 'X';
-		update();
 		if (win_condational(win_lose) == 1 || win_condational(win_lose) == 0)
 		{
 			break;

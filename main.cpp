@@ -12,11 +12,8 @@ int main() {
 
 	board.Menu();
 #if 1
-	while (true) {
 		board.gamePlayLoop();
-		max.minimax(board.graph, max.miximizing_player);
-
-	}
+		board.graph[max.minimax(board.graph, max.miximizing_player)] = 'O';
+		
 #endif
 }
-
