@@ -1,36 +1,13 @@
 #include "Gamebroad.h"
 
-gameBroad::gameBroad()
-{
-	this->user_row;
-	this->user_column;
-	this->graph;
-	this->human_player;
-	this->computer_player;
-	this->human_player2;
-}
-
 void gameBroad::update() const 
 {
-	for (size_t rows = 0; rows < 3; rows++) 
+	for (size_t i = 0; i <= 8; i++)
 	{
-		for (size_t columns = 0; columns < 3; columns++)
+		std::cout << graph[i] << " ";
+		if ((i +1) % 3 == 0)
 		{
-			std::cout << graph[rows][columns];
-
-			if (columns < 2)
-			{
-				std::cout << " |"; // column divider
-				
-
-			}
-
-		}
-		std::cout << "\n";
-
-		if (rows < 2)
-		{
-			std::cout << "-------" << "\n"; // row divider
+			std::cout << std::endl;
 		}
 	}
 
@@ -42,132 +19,114 @@ void gameBroad::Menu()
 {	
 	std::cout << "Welcome to Tic-Tac-Toe!\n\n";
 	std::cout << "Player 1 name : ";
-	std::cin >> human_player;
-	std::cout << "Player 2 name : ";
-	std::cin >> human_player2;
-	std::cout << human_player;
-	std::cout << "\n\n ";
+	std::cin >> player;
+	std::cout << player;
+	std::cout << "\n\n";
 	
 }
 
-void gameBroad::gamePlayLoop()
+void gameBroad::gamePlayLoop()//put bool
 {
-	bool flag = true;
 	update();
-	while (flag) {
-
-		std::cout << "\n" << human_player << " pick a row : ";
-		std::cin >> user_row;
-		std::cout << human_player << " pick a column : ";
-		std::cin >> user_column;
+	while (true) {
+		minimizing_player = true;
+		
+		std::cout << "\n" << player << " pick a row : ";
+		std::cin >> input;
 		std::cout << "\n";
 
-		graph[user_row][user_column] = 'X';
-
-		
-		if (winCondation(flag) == false)
+		graph[input] = 'X';
+		if (win_condational(win_lose) == 1 || win_condational(win_lose) == 0)
 		{
 			break;
 		}
 		
+		minimizing_player = false;
+		break;
 	}
-	
+
 }
 
-bool gameBroad::winCondation(bool flag)
+int gameBroad::win_condational(int flag)
 {
-	
-	if (graph[0][0] == 'X' && graph[0][1] == 'X' && graph[0][2] == 'X')
-	{
-		std::cout << human_player << " won!";
-		return flag = false;
+
+	if (graph[0, 1, 2] == 'X') {
+
+		std::cout << "X wins" << std::endl;
+		flag = 1;
 	}
-	else if (graph[1][0] == 'X' && graph[1][1] == 'X' && graph[1][2] == 'X')
-	{
-		
-		std::cout << human_player << " won!";
-		return flag = false;
+	else if (graph[0, 1, 2] == 'O') {
+
+		std::cout << "O wins" << std::endl;
+		flag = 0;
 	}
-	else if (graph[2][0] == 'X' && graph[2][1] == 'X' && graph[2][2] == 'X')
-	{
-		
-		std::cout << human_player << " won!";
-		return flag = false;
+	else if (graph[6, 7, 8] == 'X') {
+
+		std::cout << "X wins" << std::endl;
+		flag = 1;
 	}
-	else if (graph[2][0] == 'X' && graph[1][1] == 'X' && graph[0][2] == 'X')
-	{
-		
-		std::cout << human_player << " won!";
-		return flag = false;
+	else if (graph[6, 7, 8] == 'O') {
+
+		std::cout << "O wins" << std::endl;
+		flag = 0;
 	}
-	else if (graph[2][2] == 'X' && graph[1][1] == 'X' && graph[0][0] == 'X')
-	{
-		
-		std::cout << human_player << " won!";
-		return flag = false;
+	else if (graph[0, 3, 6] == 'X') {
+
+		std::cout << "X wins" << std::endl;
+		flag = 1;
 	}
-	else if (graph[0][0] == 'X' && graph[1][0] == 'X' && graph[2][0] == 'X')
+ 	else if (graph[0, 3, 6] == 'O')
 	{
-		std::cout << human_player << " won!";
-		return flag = false;
+		std::cout << "O wins" << std::endl;
+		flag = 0;
 	}
-	else if (graph[0][1] == 'X' && graph[1][1] == 'X' && graph[2][1] == 'X')
+	else if (graph[1, 4, 7] == 'X') {
+
+		std::cout << "X wins" << std::endl;
+		flag = 1;
+	}
+	else if (graph[1, 4, 7] == 'O')
 	{
-		
-		std::cout << human_player << " won!";
-		return flag = false;
+		std::cout << "O wins" << std::endl;
+		flag = 0;
 	}
-	else if (graph[0][2] == 'X' && graph[1][2] == 'X' && graph[2][2] == 'X')
+	else if (graph[2, 5, 8] == 'X') {
+
+		std::cout << "X wins" << std::endl;
+		flag = 1;
+	}
+	else if (graph[2, 5, 8] == 'O')
 	{
-		
-		std::cout << human_player << " won!";
-		return flag = false;
+		std::cout << "O wins" << std::endl;
+		flag = 0;
 	}
+	else if (graph[0, 4, 8] == 'X') {
+
+		std::cout << "X wins" << std::endl;
+		flag = 1;
+	}
+	else if (graph[0, 4, 8] == 'O')
+	{
+		std::cout << "O wins" << std::endl;
+		flag = 0;
+	}
+	else if (graph[2, 4, 6] == 'X') {
+
+		std::cout << "X wins" << std::endl;
+		flag = 1;
+	}
+	else if (graph[2, 4, 6] == 'O')
+	{
+		std::cout << "X wins" << std::endl;
+		flag = 0;
+	}
+	else
+	{
+		flag = -1;
+	}
+
 	return flag;
-}
-
-int gameBroad::aiInput()
-{	
-	int computer_row = rand() % 2;
-	int computer_column = rand() % 2;
-
-	if (graph[user_row][user_column] == 'X')
-	{
-		bool flag = true;
-		while (flag) {
-			
-			for (size_t i = 0; i < sizeof(graph); ++i)
-			{
-				for (size_t j = 0; j < sizeof(graph); ++j)
-				{
-					if (graph[i][j] == ' ')
-					{
-						
-						graph[computer_row][computer_column] = '0';
-						flag = false;
-					}
-					else if (graph[i][j] == 'X')
-					{
-						graph[computer_row][computer_column] = 'X';
-						flag = false;
-					}
-				}
-			}
-			
-		}
-		
-		computer_row != 0 ? --computer_row : --computer_column;
-		computer_column != 0 ? --computer_column : --computer_row;
-	}
-	
-		std::cout << "\nJeff choose row: " << computer_row ;
-		std::cout << "\n";
-		std::cout << "Jeff choose column: " << computer_column << "\n\n";
-		update();
-		
-	return 0;
-}
-
+};
 
 
 

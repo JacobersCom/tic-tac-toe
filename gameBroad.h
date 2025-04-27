@@ -1,29 +1,26 @@
+#pragma once 
 #include <iostream>
-#include <random>
+
+
 
 class gameBroad {
 
 public:
-	int user_row, user_column = 0;
-	std::string human_player, computer_player, human_player2;
+	int input;
+	std::string player;
+	bool minimizing_player;
+	int win_lose;
+	bool flag;
 	
-	char graph[3][3] = {
-
-		{' ',' ',' '},
-		{' ',' ',' '},
-		{' ',' ',' '}
-
-	};
-
+	char graph[9] = { '_','_','_','_','_','_','_','_','_' };
 	
-	gameBroad();
-	void update() const ;
+	gameBroad(){}
+
+	gameBroad(int user_input, std::string player, bool mFlag, int num, bool mPlayer): 
+		input(user_input), player(player), flag(mFlag), minimizing_player(mPlayer), win_lose(num){}
+	void update() const;
 	void Menu();
 	void gamePlayLoop();
-	bool winCondation(bool flag);
-	int aiInput();
-	
-
-	
+	int win_condational(int flag);
 
 };
