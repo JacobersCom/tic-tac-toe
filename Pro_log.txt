@@ -10,5 +10,12 @@ the code for that functionailty isn't in the game yet.
 
 Fixes:
 
-To make this possbile, I need to find a way to to take the first iteration of the 
-algo and place it on to the board.
+Score
+
+X wins = 1
+O wins = -1
+Tie = 0
+
+Make cases all camual
+
+Changing variable names

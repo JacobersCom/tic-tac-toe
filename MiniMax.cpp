@@ -1,101 +1,109 @@
-#include "MiniMax.h"
+#include"MiniMax.h"
 
-char MiniMax::empty_cell_check()
+char MiniMax::bestIndex(char board[])
 {
-	for (size_t i = 0; i <= 2; i++)
+	int bestScore = -INFINITY;
+	for (size_t i = 0; i < 8; i++)
 	{
-			if (graph[i] != 'X' && graph[i] != 'O')
-			{
-				return graph[i];
-			}
-	}
-}
-
-
-void MiniMax::copy_broad()
-{
-	if (miximizing_player == false) {
-		empty_cell_check();
-		auto broad_copy = new Node(empty_cell_check());
-		miximizing_player = true;
-		broad_copy->right = new Node(empty_cell_check());
-	}
-}
-#if 1
-int MiniMax::min(int best_value, char* worst_value)
-{
-	return best_value < int(worst_value) ? best_value : int(worst_value);
-}
-
-int MiniMax::max(int best_value, char* worst_value)
-{
-	return best_value > int(worst_value) ? best_value : int(worst_value);
-}
-#endif
-
-#if 1
-int MiniMax::minimax(char board[], bool maximizing_player)
-{
-	for (char i = 0; i < 8; i++)
-	{
-		if (i != '_')
+		if (board[i] == '_')
 		{
-			winner = win_condational(win_lose);
-			
-			if (winner == 1)
+			board[i] = aiMark;
+			score = minimax(board, 0, true);
+			board[i] = '_';
+			if (score > bestScore)
 			{
-				std::cout << minimizing_player << "wins!" << std::endl;
+				bestScore = score;
+				bestMove = i;
 			}
-			else if (winner == 0)
+		}
+	}
+	return board[bestMove] = aiMark;
+}
+
+char MiniMax::minimax(char board[],int depth, bool isMaxing)
+{
+	for (size_t i = 0; i < 8; i++)
+	{
+		if (board[i] != '_')
+		{
+			if (win_condational(win_lose) == 1)
 			{
-				std::cout << "Jeff wins!!";
+				score = 1;
 			}
-			else
+			else if (win_condational(win_lose) == 0)
 			{
-				break;
+				score = -1;
+			}
+			else if (win_condational(win_lose) == -1) 
+			{
+				score = 0;
 			}
 		}
 	}
 
-
-	if (maximizing_player == true)
+	
+	for (size_t i = 0; i < 8; i++)
 	{
-		best_value = -INFINITY;
-		size_t iter;
-		for (iter = 0; iter < 8; iter++) 
+//		 --- Maximizing player ---
+		if (isMaxing)
 		{
-			if (board[iter] == '_')
+			int bestScore = -INFINITY;
+//			 --- If i is an empty space ---
+			if (board[i] == '_')
 			{
-				board[iter] = 'O';
-				value = new char(minimax(board, false));
-				board[iter] = '_';
-				best_value = min(best_value, value);
-				copy_broad();
-			}
-		}
-		return iter == '_';
-		 
-	}
-	else {
-		best_value = INFINITY; 
-		for (auto i = 0; i < 8; i++) 
-		{
-			if (board[i] == '_') 
-			{
-				board[i] = 'X';
-				value = new char(minimax(board, true));
+//			 --- Place ai mark (X) at i ---
+				board[i] = aiMark;
+
+				//...
+				score = minimax(board, depth+1,false);
+
+				//Reset board space
 				board[i] = '_';
-				best_value = min(best_value, value);
+
+				if (score > bestScore)
+				{
+					bestScore = score;
+					bestMove = i;
+				}
 			}
-			
 		}
-		return best_value;
+//		--- Minimizing player ---
+		else
+		{
+			int bestScore = INFINITY;
+
+//			--- If there is an empty space in the board ---
+			if (board[i] == '_')
+			{
+//				--- Place a humanMark(O) at i ---
+				board[i] = humanMark;
+
+//				...
+				score = minimax(board,depth+1,true);
+
+//				--- Reset Board ---
+				board[i] = '_';
+
+				if (score < bestScore)
+				{
+					bestScore = score;
+					bestMove = i;
+				}
+			}
+		}
+	}
+	return board[bestMove] = aiMark;
+}
+
+void MiniMax::winCondational(char board[])
+{
+	for (size_t i = 0; i < 8; i++)
+	{
+		board[i];
 	}
 }
-#endif
 
-
-
-
-
-
+char MiniMax::eqaulIndexs(char a, char b, char c)
+{
+	return a == b && b == c && a != '_';
+}
