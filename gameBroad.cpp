@@ -27,7 +27,7 @@ void gameBroad::Menu()
 
 void gameBroad::gamePlayLoop()//put bool
 {
-	update();
+	
 	while (true) {
 		minimizing_player = true;
 		
@@ -36,10 +36,6 @@ void gameBroad::gamePlayLoop()//put bool
 		std::cout << "\n";
 
 		graph[input] = 'O';
-		if (win_condational(win_lose) == 1 || win_condational(win_lose) == 0)
-		{
-			break;
-		}
 		
 		minimizing_player = false;
 		break;

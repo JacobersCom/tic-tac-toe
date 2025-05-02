@@ -15,7 +15,5 @@ public:
 
 	char bestIndex(char board[]);
 	char minimax(char board[],int depth,bool isMaxing);
-	void winCondational(char board[]);
-	char eqaulIndexs(char a, char b, char c);
 	
 };

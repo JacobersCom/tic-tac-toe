@@ -92,18 +92,6 @@ char MiniMax::minimax(char board[],int depth, bool isMaxing)
 			}
 		}
 	}
-	return board[bestMove] = aiMark;
+	return bestMove;
 }
 
-void MiniMax::winCondational(char board[])
-{
-	for (size_t i = 0; i < 8; i++)
-	{
-		board[i];
-	}
-}
-
-char MiniMax::eqaulIndexs(char a, char b, char c)
-{
-	return a == b && b == c && a != '_';
-}
