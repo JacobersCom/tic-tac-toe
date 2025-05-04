@@ -2,6 +2,7 @@
 
 char MiniMax::bestIndex(char board[])
 {
+//	 --- AI moves ---
 	int bestScore = -INFINITY;
 	for (size_t i = 0; i < 8; i++)
 	{
@@ -22,18 +23,25 @@ char MiniMax::bestIndex(char board[])
 
 char MiniMax::minimax(char board[],int depth, bool isMaxing)
 {
-	for (size_t i = 0; i < 8; i++)
-	{
+
+	for (size_t i = 0; i < 8; i++){
+
+//		--- If space is empty ---
 		if (board[i] != '_')
 		{
+//			--- Run winCondational ---
+
+//			--- X wins ---
 			if (win_condational(win_lose) == 1)
 			{
 				score = 1;
 			}
+//			--- O wins ---
 			else if (win_condational(win_lose) == 0)
 			{
 				score = -1;
 			}
+//			--- Draw ---
 			else if (win_condational(win_lose) == -1) 
 			{
 				score = 0;
@@ -63,9 +71,9 @@ char MiniMax::minimax(char board[],int depth, bool isMaxing)
 				if (score > bestScore)
 				{
 					bestScore = score;
-					bestMove = i;
 				}
 			}
+			return bestScore;
 		}
 //		--- Minimizing player ---
 		else
@@ -84,15 +92,16 @@ char MiniMax::minimax(char board[],int depth, bool isMaxing)
 //				--- Reset Board ---
 				board[i] = '_';
 
+//				--- Checking if the score has been minimized ---
 				if (score < bestScore)
 				{
 					bestScore = score;
-					bestMove = i;
 				}
 			}
+			return bestScore;
 		}
 	}
-	return board[bestMove] = aiMark;
+	
 }
 
 void MiniMax::winCondational(char board[])

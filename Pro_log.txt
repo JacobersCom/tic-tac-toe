@@ -1,12 +1,10 @@
 Goal:
 
-I to take the minimax algo, and take the first input from the Ai and place
-it on the board.
+Step through the bestIndex and find where it is placing all the Xs.
 
 Issues: 
 
-Currently the algo runs but doesn't place anything on the board. Why? because
-the code for that functionailty isn't in the game yet. 
+bestIndex loops and prints to all empty spaces on board
 
 Fixes:
 
@@ -19,3 +17,10 @@ Tie = 0
 Make cases all camual
 
 Changing variable names
+
+Change Log: 
+
+Created the minimax algo again with clean commented code
+Wrote the bestIndex method with the goal of using the output of the minimax algo to print on to the screen. 
+The method needs work, but I believe I am close to being done. 
+
