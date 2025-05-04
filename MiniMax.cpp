@@ -1,6 +1,6 @@
 #include"MiniMax.h"
 
-char MiniMax::bestIndex(char board[])
+int MiniMax::bestIndex(char board[])
 {
 	int bestScore = -INFINITY;
 	for (size_t i = 0; i < 8; i++)
@@ -17,81 +17,77 @@ char MiniMax::bestIndex(char board[])
 			}
 		}
 	}
-	return board[bestMove] = aiMark;
+	return bestMove;
 }
 
-char MiniMax::minimax(char board[],int depth, bool isMaxing)
+int MiniMax::minimax(char board[],int depth, bool isMaxing)
 {
-	for (size_t i = 0; i < 8; i++)
-	{
-		if (board[i] != '_')
-		{
-			if (win_condational(win_lose) == 1)
-			{
-				score = 1;
-			}
-			else if (win_condational(win_lose) == 0)
-			{
-				score = -1;
-			}
-			else if (win_condational(win_lose) == -1) 
-			{
-				score = 0;
-			}
-		}
-	}
+	if (isMaxing) {
 
-	
-	for (size_t i = 0; i < 8; i++)
-	{
-//		 --- Maximizing player ---
-		if (isMaxing)
+		int bestScore = -INFINITY;
+		
+		for (size_t i = 0; i <= 8; i++)
 		{
-			int bestScore = -INFINITY;
-//			 --- If i is an empty space ---
 			if (board[i] == '_')
 			{
-//			 --- Place ai mark (X) at i ---
 				board[i] = aiMark;
 
-				//...
-				score = minimax(board, depth+1,false);
+				score = minimax(board, depth + 1, false);
 
-				//Reset board space
 				board[i] = '_';
-
-				if (score > bestScore)
-				{
-					bestScore = score;
-					bestMove = i;
-				}
+				bestScore = std::max(score, bestScore);
 			}
 		}
-//		--- Minimizing player ---
-		else
-		{
-			int bestScore = INFINITY;
+		return bestScore;
+	}
+	else 
+	{
+		int bestScore = INFINITY;
 
-//			--- If there is an empty space in the board ---
+		for (size_t i = 0; i <= 8; i++)
+		{
 			if (board[i] == '_')
 			{
-//				--- Place a humanMark(O) at i ---
 				board[i] = humanMark;
 
-//				...
-				score = minimax(board,depth+1,true);
+				score = minimax(board, depth + 1, true);
 
-//				--- Reset Board ---
 				board[i] = '_';
 
-				if (score < bestScore)
-				{
-					bestScore = score;
-					bestMove = i;
-				}
+				bestScore = std::min(score, bestScore);
+			}
+		}
+		return bestScore;
+
+	}
+}
+
+char MiniMax::equals3(char a, char b, char c)
+{
+	return a == b && b == c && a != '_';
+}
+
+void MiniMax::winCondational(char board[])
+{
+	for (size_t i = 0; i <= 8; i++)
+	{
+
+		if (equals3(board[0], board[1], board[2] == 'O'))
+		{
+			std::cout << "O wins";
+		}
+		else if (equals3(board[i], board[i], board[i] == 'X'))
+		{
+			std::cout << "X wins";
+		}
+		else if (board[i] != '_') 
+		{
+			openSpace++;
+			if(openSpace == 8)
+			{
+				std::cout << "Tie!";
 			}
 		}
 	}
-	return bestMove;
 }
 

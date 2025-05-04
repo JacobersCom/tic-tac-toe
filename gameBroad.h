@@ -10,17 +10,17 @@ public:
 	std::string player;
 	bool minimizing_player;
 	int win_lose;
-	bool flag;
+	bool retur;
 	
-	char graph[9] = { '_','_','_','_','_','_','_','_','_' };
+	char board[9] = { '_','_','_','_','_','_','_','_','_' };
 	
 	gameBroad(){}
 
 	gameBroad(int user_input, std::string player, bool mFlag, int num, bool mPlayer): 
-		input(user_input), player(player), flag(mFlag), minimizing_player(mPlayer), win_lose(num){}
+		input(user_input), player(player), retur(mFlag), minimizing_player(mPlayer), win_lose(num){}
 	void update() const;
 	void Menu();
 	void gamePlayLoop();
-	int win_condational(int flag);
+	bool win_condational(char board[]);
 
 };

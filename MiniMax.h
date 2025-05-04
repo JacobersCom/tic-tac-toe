@@ -8,12 +8,15 @@ class MiniMax : public gameBroad
 { 
 public:
 	char aiMark, humanMark;
-	char bestMove;
-	char score;
+	int bestMove;
+	int score;
+	int openSpace;
 
-	MiniMax(): aiMark('X'), bestMove(' '),  score(' '), humanMark('O') {}
+	MiniMax(): aiMark('X'), bestMove(' '),  score(' '), humanMark('O'), openSpace(0) {}
 
-	char bestIndex(char board[]);
-	char minimax(char board[],int depth,bool isMaxing);
+	int bestIndex(char board[]);
+	int minimax(char board[],int depth,bool isMaxing);
+	char equals3(char a, char b, char c);
+	void winCondational(char board[]);
 	
 };

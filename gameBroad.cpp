@@ -4,7 +4,7 @@ void gameBroad::update() const
 {
 	for (size_t i = 0; i <= 8; i++)
 	{
-		std::cout << graph[i] << " ";
+		std::cout << board[i] << " ";
 		if ((i +1) % 3 == 0)
 		{
 			std::cout << std::endl;
@@ -35,94 +35,115 @@ void gameBroad::gamePlayLoop()//put bool
 		std::cin >> input;
 		std::cout << "\n";
 
-		graph[input] = 'O';
+		board[input] = 'O';
 		
 		minimizing_player = false;
 		break;
 	}
 
 }
-
-int gameBroad::win_condational(int flag)
+#if 0
+bool gameBroad::win_condational(char board[])
 {
+    
+    if (board[0] == 'X' && board[1] == 'X' && board[2] == 'X') {
 
-	if (graph[0, 1, 2] == 'X') {
+        std::cout << "X wins" << std::endl;
+        return true;
+    }
+    if (board[3] == 'X' && board[4] == 'X' && board[5] == 'X') {
 
-		std::cout << "X wins" << std::endl;
-		flag = 1;
-	}
-	else if (graph[0, 1, 2] == 'O') {
+        std::cout << "X wins" << std::endl;
+        return true;
+    }
+    if (board[6] == 'X' && board[7] == 'X' && board[8] == 'X') {
 
-		std::cout << "O wins" << std::endl;
-		flag = 0;
-	}
-	else if (graph[6, 7, 8] == 'X') {
+        std::cout << "X wins" << std::endl;
+        return true;
+    }
+       
 
-		std::cout << "X wins" << std::endl;
-		flag = 1;
-	}
-	else if (graph[6, 7, 8] == 'O') {
+    //X wins through vertical connection
+    if (board[0] == 'X' && board[3] == 'X' && board[6] == 'X') {
 
-		std::cout << "O wins" << std::endl;
-		flag = 0;
-	}
-	else if (graph[0, 3, 6] == 'X') {
+        std::cout << "X wins" << std::endl;
+        return true;
+    }
+    if (board[1] == 'X' && board[4] == 'X' && board[7] == 'X') {
 
-		std::cout << "X wins" << std::endl;
-		flag = 1;
-	}
- 	else if (graph[0, 3, 6] == 'O')
-	{
-		std::cout << "O wins" << std::endl;
-		flag = 0;
-	}
-	else if (graph[1, 4, 7] == 'X') {
+        std::cout << "X wins" << std::endl;
+        return true;
+    }
+    if (board[2] == 'X' && board[5] == 'X' && board[8] == 'X') {
 
-		std::cout << "X wins" << std::endl;
-		flag = 1;
-	}
-	else if (graph[1, 4, 7] == 'O')
-	{
-		std::cout << "O wins" << std::endl;
-		flag = 0;
-	}
-	else if (graph[2, 5, 8] == 'X') {
+        std::cout << "X wins" << std::endl;
+        return true;
+    }
+    std::cout << "X wins" << std::endl;
+        
+    //X wins through diagonal connection
+    if (board[0] == 'X' && board[4] == 'X' && board[8] == 'X') {
+        std::cout << "O wins" << std::endl;
+        return true;
+    }
+    else if (board[6, 7, 8] == 'X') {
 
-		std::cout << "X wins" << std::endl;
-		flag = 1;
-	}
-	else if (graph[2, 5, 8] == 'O')
-	{
-		std::cout << "O wins" << std::endl;
-		flag = 0;
-	}
-	else if (graph[0, 4, 8] == 'X') {
+        std::cout << "X wins" << std::endl;
+        return true;
+    }
+    if (board[2] == 'X' && board[4] == 'X' && board[6] == 'X') {
+        std::cout << "X wins" << std::endl;
+        return true;
+    }
+    else if (board[6, 7, 8] == 'O') {
 
-		std::cout << "X wins" << std::endl;
-		flag = 1;
-	}
-	else if (graph[0, 4, 8] == 'O')
-	{
-		std::cout << "O wins" << std::endl;
-		flag = 0;
-	}
-	else if (graph[2, 4, 6] == 'X') {
+        std::cout << "X wins" << std::endl;
+        return true;
+    }
+  
+    //O win through horizontal connection
+    if (board[0] == 'O' && board[1] == 'O' && board[2] == 'O') {
+        std::cout << "O wins" << std::endl;
+        return false;
+    }
+    if (board[3] == 'O' && board[4] == 'O' && board[5] == 'O') {
 
-		std::cout << "X wins" << std::endl;
-		flag = 1;
-	}
-	else if (graph[2, 4, 6] == 'O')
-	{
-		std::cout << "X wins" << std::endl;
-		flag = 0;
-	}
-	else
-	{
-		flag = -1;
-	}
+        std::cout << "O wins" << std::endl;
+        return false;
+    }
+    if (board[6] == 'O' && board[7] == 'O' && board[8] == 'O') {
 
-	return flag;
-};
+        std::cout << "O wins" << std::endl;
+        return false;
+    }
 
+    //O wins through vertical connection
+    if (board[0] == 'O' && board[3] == 'O' && board[6] == 'O') {
+
+        std::cout << "O wins" << std::endl;
+        return false;
+    }
+    if (board[1] == 'O' && board[4] == 'O' && board[7] == 'O') {
+
+        std::cout << "O wins" << std::endl;
+        return false;
+    }
+    if (board[2] == 'O' && board[5] == 'O' && board[8] == 'O') {
+
+        std::cout << "O wins" << std::endl;
+        return false;
+    }
+    if (board[0] == 'O' && board[4] == 'O' && board[8] == 'O')
+    {
+        std::cout << "O wins" << std::endl;
+        return false;
+    }
+    if (board[2] == 'O' && board[4] == 'O' && board[6] == 'O')
+    {
+        std::cout << "O wins" << std::endl;
+        return false;
+    }
+}
+#endif
 
 
