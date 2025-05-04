@@ -1,118 +1,91 @@
-#include"MiniMax.h"
+#include "MiniMax.h"
 
-char MiniMax::bestIndex(char board[])
-{
-//	 --- AI moves ---
-	int bestScore = -INFINITY;
-	for (size_t i = 0; i < 8; i++)
-	{
-		if (board[i] == '_')
-		{
-			board[i] = aiMark;
-			score = minimax(board, 0, true);
-			board[i] = '_';
-			if (score > bestScore)
-			{
-				bestScore = score;
-				bestMove = i;
-			}
-		}
-	}
-	return board[bestMove] = aiMark;
+MiniMax::MiniMax() : aiMark('X'), humanMark('O') {}
+
+int MiniMax::bestIndex(char board[]) {
+    int bestMove = -1;
+    int bestScore = -10000; // large negative number
+
+    for (size_t i = 0; i < 9; i++) {
+        if (board[i] == '_') {
+            board[i] = aiMark;
+            int score = minimax(board, 0, false);
+            board[i] = '_';
+
+            if (score > bestScore) {
+                bestScore = score;
+                bestMove = i;
+            }
+        }
+    }
+
+    if (bestMove == -1) {
+        std::cout << "AI error: No valid move found.\n";
+    }
+
+    return bestMove;
 }
 
-char MiniMax::minimax(char board[],int depth, bool isMaxing)
-{
+int MiniMax::minimax(char board[], int depth, bool isMaxing) {
+    char result = winCondational(board);
+    if (result == aiMark) return 10 - depth;
+    if (result == humanMark) return depth - 10;
 
-	for (size_t i = 0; i < 8; i++){
+    bool isFull = true;
+    for (size_t i = 0; i < 9; i++)
+        if (board[i] == '_') isFull = false;
+    if (isFull) return 0;
 
-//		--- If space is empty ---
-		if (board[i] != '_')
-		{
-//			--- Run winCondational ---
-
-//			--- X wins ---
-			if (win_condational(win_lose) == 1)
-			{
-				score = 1;
-			}
-//			--- O wins ---
-			else if (win_condational(win_lose) == 0)
-			{
-				score = -1;
-			}
-//			--- Draw ---
-			else if (win_condational(win_lose) == -1) 
-			{
-				score = 0;
-			}
-		}
-	}
-
-	
-	for (size_t i = 0; i < 8; i++)
-	{
-//		 --- Maximizing player ---
-		if (isMaxing)
-		{
-			int bestScore = -INFINITY;
-//			 --- If i is an empty space ---
-			if (board[i] == '_')
-			{
-//			 --- Place ai mark (X) at i ---
-				board[i] = aiMark;
-
-				//...
-				score = minimax(board, depth+1,false);
-
-				//Reset board space
-				board[i] = '_';
-
-				if (score > bestScore)
-				{
-					bestScore = score;
-				}
-			}
-			return bestScore;
-		}
-//		--- Minimizing player ---
-		else
-		{
-			int bestScore = INFINITY;
-
-//			--- If there is an empty space in the board ---
-			if (board[i] == '_')
-			{
-//				--- Place a humanMark(O) at i ---
-				board[i] = humanMark;
-
-//				...
-				score = minimax(board,depth+1,true);
-
-//				--- Reset Board ---
-				board[i] = '_';
-
-//				--- Checking if the score has been minimized ---
-				if (score < bestScore)
-				{
-					bestScore = score;
-				}
-			}
-			return bestScore;
-		}
-	}
-	
+    if (isMaxing) {
+        int bestScore = -10000;
+        for (size_t i = 0; i < 9; i++) {
+            if (board[i] == '_') {
+                board[i] = aiMark;
+                int score = minimax(board, depth + 1, false);
+                board[i] = '_';
+                bestScore = std::max(bestScore, score);
+            }
+        }
+        return bestScore;
+    }
+    else {
+        int bestScore = 10000;
+        for (size_t i = 0; i < 9; i++) {
+            if (board[i] == '_') {
+                board[i] = humanMark;
+                int score = minimax(board, depth + 1, true);
+                board[i] = '_';
+                bestScore = std::min(bestScore, score);
+            }
+        }
+        return bestScore;
+    }
 }
 
-void MiniMax::winCondational(char board[])
-{
-	for (size_t i = 0; i < 8; i++)
-	{
-		board[i];
-	}
+char MiniMax::equals3(char a, char b, char c) {
+    return a == b && b == c && a != '_';
 }
 
-char MiniMax::eqaulIndexs(char a, char b, char c)
-{
-	return a == b && b == c && a != '_';
+char MiniMax::winCondational(char board[]) {
+    int winningCombos[8][3] = {
+        {0,1,2},{3,4,5},{6,7,8},
+        {0,3,6},{1,4,7},{2,5,8},
+        {0,4,8},{2,4,6}
+    };
+
+    for (auto& combo : winningCombos) {
+        if (equals3(board[combo[0]], board[combo[1]], board[combo[2]])) {
+            return board[combo[0]];
+        }
+    }
+
+    return '_';
+}
+
+void MiniMax::aiMove(char board[]) {
+    int move = bestIndex(board);
+    if (move != -1) {
+        board[move] = aiMark;
+        std::cout << "AI move: " << move << std::endl;
+    }
 }

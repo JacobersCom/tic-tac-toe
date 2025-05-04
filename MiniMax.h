@@ -1,21 +1,17 @@
 #pragma once
 
-#include "gameBroad.h"
-#include "Node.h"
-#include<iostream>
+#include <iostream>
 
-class MiniMax : public gameBroad
-{ 
+class MiniMax {
 public:
-	char aiMark, humanMark;
-	char bestMove;
-	char score;
+    char aiMark;
+    char humanMark;
 
-	MiniMax(): aiMark('X'), bestMove(' '),  score(' '), humanMark('O') {}
+    MiniMax();  // constructor
 
-	char bestIndex(char board[]);
-	char minimax(char board[],int depth,bool isMaxing);
-	void winCondational(char board[]);
-	char eqaulIndexs(char a, char b, char c);
-	
+    int bestIndex(char board[]);
+    int minimax(char board[], int depth, bool isMaxing);
+    char equals3(char a, char b, char c);
+    char winCondational(char board[]);
+    void aiMove(char board[]);
 };
